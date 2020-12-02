@@ -25,7 +25,7 @@ public class ReservaController
         return ResponseEntity.ok(reserva);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/clientes/{id}")
     public ResponseEntity<Reserva> getReservaByCliente(@PathVariable int id) 
     {
         Reserva reserva = service.getReservaByCliente(id);  
@@ -33,7 +33,7 @@ public class ReservaController
         return ResponseEntity.ok(reserva);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/veiculos/{id}")
     public ResponseEntity<Reserva> getReservaByVeiculo(@PathVariable int id) 
     {
         Reserva reserva = service.getReservaByVeiculo(id);  

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/veiculos")
 public class VeiculoController 
 {
     @Autowired
@@ -38,21 +38,21 @@ public class VeiculoController
     @GetMapping("/{id}")
     public ResponseEntity<Veiculo> getVeiculoById(@PathVariable int id) 
     {
-        Veiculo cliente = service.getVeiculoById(id);    
+        Veiculo veiculo = service.getVeiculoById(id);    
 
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.ok(veiculo);
     }
 
 
     @PostMapping
-    public ResponseEntity<Veiculo> save(@RequestBody VeiculoDTO clienteDTO,
+    public ResponseEntity<Veiculo> save(@RequestBody VeiculoDTO veiculoDTO,
                                            HttpServletRequest request,
                                            UriComponentsBuilder builder
                                            ) 
     {
-         Veiculo cliente = service.fromDTO(clienteDTO);
-         cliente = service.save(cliente);
-         UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+cliente.getId()).build();
+         Veiculo veiculo = service.fromDTO(veiculoDTO);
+         veiculo = service.save(veiculo);
+         UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+veiculo.getId()).build();
 
          return ResponseEntity.created(uriComponents.toUri()).build();
     }
@@ -66,12 +66,12 @@ public class VeiculoController
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Veiculo> update(@RequestBody VeiculoDTO clienteDTO, @PathVariable int id)
+    public ResponseEntity<Veiculo> update(@RequestBody VeiculoDTO veiculoDTO, @PathVariable int id)
     { 
-        Veiculo cliente = service.fromDTO(clienteDTO);
-        cliente.setId(id);
-        cliente = service.update(cliente);
+        Veiculo veiculo = service.fromDTO(veiculoDTO);
+        veiculo.setId(id);
+        veiculo = service.update(veiculo);
         
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.ok(veiculo);
     }
 }
