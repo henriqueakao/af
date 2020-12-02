@@ -3,6 +3,7 @@ package com.example.af.service;
 import com.example.af.repository.*;
 import com.example.af.model.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -49,6 +50,10 @@ public class ReservaService
         Cliente cliente = clienteService.getClienteById(idCliente);
         Veiculo veiculo = veiculoService.getVeiculoById(idVeiculo);
 
+        if(LocalDate.now().getDayOfWeek().equals(DayOfWeek.SUNDAY))
+        {
+            System.out.println("Domingo!");
+        }
         reserva.setDataInicio(LocalDate.now());
         reserva.setDataFim(dataFim);
 

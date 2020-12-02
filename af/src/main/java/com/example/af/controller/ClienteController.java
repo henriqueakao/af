@@ -1,5 +1,6 @@
 package com.example.af.controller;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -89,6 +90,11 @@ public class ClienteController
     {
          reservaService.save(reserva, dataFim, idCliente, idVeiculo);                                    
          UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+reserva.getId()).build();
+
+         if(dataFim.getDayOfWeek().equals(DayOfWeek.SUNDAY))
+         {
+             System.out.println("Domingo!");
+         }
 
          return ResponseEntity.created(uriComponents.toUri()).build();
     }
